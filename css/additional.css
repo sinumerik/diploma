@@ -1,0 +1,8 @@
+.in {
+    overflow: hidden;
+    transition: all .5s ease-out;
+}
+
+p {
+    position: relative;
+}

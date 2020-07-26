@@ -14,6 +14,8 @@
     <!-- Стили -->
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Additional styles -->
+    <link rel="stylesheet" href="./css/additional.css">
     <!-- Custom styles for this template -->
     <link href="css/style.css" rel="stylesheet">
 
@@ -43,7 +45,7 @@
                 <div class="contacts">
                     <p>+7 <img src="" alt="" style="width: 0px">(800) <img src="" alt="" style="width: 0px">555-<img
                             src="" alt="" style="width: 0px">64-47</p>
-                    <a class="call-btn" href="#">Перезвоните мне</a>
+                    <a class="call-btn btn-popup" data-name="call" href="#">Перезвоните мне</a>
                 </div>
             </div>
         </div>
@@ -172,38 +174,43 @@
                              aria-labelledby="headingTwo">
                             <div class="panel-body">
 
-                                <div class="title-text">первый колодец (приемный)</div>
-                                <div class="select-box">
-                                    <p><strong>Диаметр</strong></p>
-                                    <select class="form-control expand">
-                                        <option>1.4 метра</option>
-                                        <option>2 метра</option>
-                                    </select>
+                                <div class="septic-value">
+                                    <div class="title-text">первый колодец (приемный)</div>
+                                    <div class="select-box">
+                                        <p><strong>Диаметр</strong></p>
+                                        <select class="form-control expand">
+                                            <option value="0">1.4 метра</option>
+                                            <option value="20">2 метра</option>
+                                        </select>
+                                    </div>
+                                    <div class="select-box">
+                                        <p><strong>Количество колец</strong></p>
+                                        <select class="form-control expand">
+                                            <option value="0">1 штука</option>
+                                            <option value="30">2 штуки</option>
+                                            <option value="50">3 штуки</option>
+                                        </select>
+                                    </div>
                                 </div>
-                                <div class="select-box">
-                                    <p><strong>Количество колец</strong></p>
-                                    <select class="form-control expand">
-                                        <option>1 штука</option>
-                                        <option>2 штуки</option>
-                                        <option>3 штуки</option>
-                                    </select>
-                                </div>
+                                
 
-                                <div class="title-text">второй колодец (дренажный)</div>
-                                <div class="select-box">
-                                    <p><strong>Диаметр</strong></p>
-                                    <select class="form-control expand">
-                                        <option>1.4 метра</option>
-                                        <option>2 метра</option>
-                                    </select>
-                                </div>
-                                <div class="select-box">
-                                    <p><strong>Количество колец</strong></p>
-                                    <select class="form-control expand">
-                                        <option>1 штука</option>
-                                        <option>2 штуки</option>
-                                        <option>3 штуки</option>
-                                    </select>
+                                <div class="septic-value">
+                                    <div class="title-text">второй колодец (дренажный)</div>
+                                    <div class="select-box">
+                                        <p><strong>Диаметр</strong></p>
+                                        <select class="form-control expand">
+                                            <option value="0">1.4 метра</option>
+                                            <option value="20">2 метра</option>
+                                        </select>
+                                    </div>
+                                    <div class="select-box">
+                                        <p><strong>Количество колец</strong></p>
+                                        <select class="form-control expand">
+                                            <option value="0">1 штука</option>
+                                            <option value="30">2 штуки</option>
+                                            <option value="50">3 штуки</option>
+                                        </select>
+                                    </div>
                                 </div>
                                 <a class="button construct-btn" data-toggle="collapse" data-parent="#accordion"
                                    href="#collapseThree"><span>Следующий шаг</span></a>
@@ -253,8 +260,8 @@
                              aria-labelledby="headingFour">
                             <div class="panel-body">
                                 <p>Введите расстояние до дома</p>
-                                <input type="text">
-                                <button class="button construct-btn call-btn">Получить расчет и скидку</button>
+                                <input type="text" class="length">
+                                <button class="button construct-btn call-btn btn-popup" data-name="discount">Получить расчет и скидку</button>
                             </div>
                         </div>
                     </div>
@@ -282,7 +289,7 @@
                         <div class="img-block">
                             <img src="img/sentence/1.png" alt="1">
                         </div>
-                        <button class="discount-btn button sentence-btn">Заказать со скидкой</button>
+                        <button class="discount-btn button sentence-btn btn-popup" data-name="discount">Заказать со скидкой</button>
                     </div>
                 </div>
 
@@ -292,7 +299,7 @@
                         <div class="img-block">
                             <img src="img/sentence/2.png" alt="2">
                         </div>
-                        <button class="discount-btn button sentence-btn">Заказать со скидкой</button>
+                        <button class="discount-btn button sentence-btn btn-popup" data-name="discount">Заказать со скидкой</button>
                     </div>
                 </div>
 
@@ -302,7 +309,7 @@
                         <div class="img-block">
                             <img src="img/sentence/3.png" alt="3">
                         </div>
-                        <button class="discount-btn button sentence-btn">Заказать со скидкой</button>
+                        <button class="discount-btn button sentence-btn btn-popup" data-name="discount">Заказать со скидкой</button>
                     </div>
                 </div>
 
@@ -312,7 +319,7 @@
                         <div class="img-block">
                             <img src="img/sentence/4.png" alt="4">
                         </div>
-                        <button class="discount-btn button sentence-btn">Узнать цену со скидкой</button>
+                        <button class="discount-btn button sentence-btn btn-popup" data-name="discount">Узнать цену со скидкой</button>
                     </div>
                 </div>
 
@@ -322,7 +329,7 @@
                         <div class="img-block">
                             <img src="img/sentence/5.png" alt="5">
                         </div>
-                        <button class="discount-btn button sentence-btn">Узнать цену со скидкой</button>
+                        <button class="discount-btn button sentence-btn btn-popup" data-name="discount">Узнать цену со скидкой</button>
                     </div>
                 </div>
 
@@ -332,7 +339,7 @@
                         <div class="img-block">
                             <img src="img/sentence/6.png" alt="6">
                         </div>
-                        <button class="discount-btn button sentence-btn">Узнать цену со скидкой</button>
+                        <button class="discount-btn button sentence-btn btn-popup" data-name="discount">Узнать цену со скидкой</button>
                     </div>
                 </div>
 
@@ -355,7 +362,7 @@
                 <p>Наш специалист бесплатно приедет, рассчитает<br>септик именно для вашего участка и дома! <br><br>А
                     также зафиксируйте специальные цены <br><strong>на монтаж септиков со скидкой 15%</strong></p>
                 <p class="gauging-bold">Выезд специалиста вас ни к чему не обязывает!</p>
-                <button class="check-btn button gauging-button">Получить чек-лист и скидку</button>
+                <button class="check-btn button gauging-button btn-popup" data-name="check">Получить чек-лист и скидку</button>
                 <span>Вы можете воспользоваться скидкой в течении 30 дней.</span>
             </div>
         </div>
@@ -441,7 +448,7 @@
                 <p>Введите свой вопрос и в течении 15 минут я свяжусь с вами!</p>
                 <form class="director-form">
                     <input type="text" name="user_quest" placeholder="Введите свой вопрос" required>
-                    <button class="button director-btn consultation-btn" name="submit" type="submit">Получить
+                    <button class="button director-btn consultation-btn btn-popup" data-name="consultation" name="submit" type="submit">Получить
                         консультацию
                     </button>
                 </form>
@@ -471,7 +478,7 @@
                 <div class="contacts">
                     <p>+7 <img src="" alt="" style="width: 0px">(800) <img src="" alt="" style="width: 0px">555-<img
                             src="" alt="" style="width: 0px">64-47</p>
-                    <a class="call-btn" href="#">Перезвоните мне</a>
+                    <a class="call-btn btn-popup" data-name="call" href="#">Перезвоните мне</a>
                 </div>
             </div>
         </div>
