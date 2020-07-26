@@ -136,6 +136,8 @@ const calculator = () => {
         twoSeptic = 15000,
         regExp = /\D/g;
 
+    const calcData = {};
+
     let septicCount = undefined;
 
     const calcChanged = () => {
@@ -149,6 +151,8 @@ const calculator = () => {
         if (typeSepticAvailable.checked) {
             septicCount = 2;
 
+            calcData.cell = 1;
+
             septicValue[1].style.display = 'none';
 
             sum  = oneSeptic;
@@ -159,11 +163,16 @@ const calculator = () => {
 
             if (bottomPresence.checked) {
                 sum += 1000;
+                calcData.presence = true;
+            } else {
+                calcData.presence = false;
             }
 
             calcResult.value = sum;
         } else {
             septicCount = 4;
+
+            calcData.cell = 2;
 
             septicValue[1].style.display = 'block';
 
@@ -174,10 +183,19 @@ const calculator = () => {
             }
             if (bottomPresence.checked) {
                 sum += 2000;
+                calcData.presence = true;
+            } else {
+                calcData.presence = false;
             }
 
             calcResult.value = sum;
         }
+
+        calcData.length = inputLength.value;
+        calcData.diametrOne = data[0].options[data[0].options.selectedIndex].text;
+        calcData.valueOne = data[1].options[data[1].options.selectedIndex].text;
+        calcData.diametrTwo = data[2].options[data[2].options.selectedIndex].text;
+        calcData.valueTwo = data[3].options[data[3].options.selectedIndex].text;
     };
 
     // проверяем количество камер септика
@@ -187,6 +205,8 @@ const calculator = () => {
     accordion.addEventListener('change', () => {
         calcChanged();
     });
+
+    return calcData;
 };
 
 calculator();
@@ -222,14 +242,13 @@ const sendFrom = () => {
     messageDiv.style.cssText = `padding: 10px;
         font-size: 18px;
         font-weight: 600;
-        color: #fff;
+        color: #4a4a4a;
         display: inline-block;
         margin-top: 15px;
         margin-bottom: 15px`;
 
-    const heroForm = document.getElementById('form1'),
-        modalForm = document.getElementById('form3'),
-        footerForm = document.getElementById('form2');
+    const mainForm = document.querySelector('.main-form'),
+        captureForm = document.querySelectorAll('.capture-form');
 
     const formListener = form => {
 
@@ -238,18 +257,18 @@ const sendFrom = () => {
 
         for (const key of form.elements) {
 
-            if (key.type === 'submit') {
+            if (key.type === 'submit' && !key.classList.contains('popup-close')) {
                 key.setAttribute('disabled', 'disabled');
             }
 
             if (key.type === 'tel') {
                 key.addEventListener('input', event => {
-
                     if (regDigit.test(event.target.value)) {
                         event.target.style.border = '1px solid green';
                         for (const key of form.elements) {
                             if (key.type === 'submit') {
                                 key.removeAttribute('disabled');
+                                key.style.border = '1px solid transparent';
                             }
                         }
                     } else {
@@ -257,6 +276,7 @@ const sendFrom = () => {
                         for (const key of form.elements) {
                             if (key.type === 'submit') {
                                 key.setAttribute('disabled', 'disabled');
+                                key.style.border = '1px solid red';
                             }
                         }
                     }
@@ -287,14 +307,26 @@ const sendFrom = () => {
         form.addEventListener('submit', event => {
             event.preventDefault();
 
+            // добавляем сообщение
             form.appendChild(messageDiv);
 
             messageDiv.textContent = pendingMessage;
 
+            // создаем объект формы
             const formData = new FormData(form);
 
+            // объект для отправки данных на сервер
             const body = {};
 
+            // создаем переменную, в которую сохраняем объект с данными из калькулятора
+            const data = calculator();
+
+            // добавляем данные из калькулятора в отправляемый объект
+            for (const key in data) {
+                body[key] = data[key];
+            }
+
+            // данные из формы в отправляемый объект
             formData.forEach((item, i) => {
                 body[i] = item;
             });
@@ -320,6 +352,21 @@ const sendFrom = () => {
                 });
         });
     };
+
+    formListener(mainForm);
+    captureForm.forEach(item => {
+        // const discountForm = document.querySelector('.popup-discount');
+
+        // if (discountForm.contains(item)) {
+        //     const calc = calculator();
+
+        //     formListener(item, calc);
+        // } else {
+        //     formListener(item);
+        // }
+
+        formListener(item);
+    });
 };
 
 sendFrom();
