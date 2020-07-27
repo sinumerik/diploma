@@ -67,16 +67,15 @@ const calculator = () => {
         }
 
         calcData.length = inputLength.value;
+        calcData.result = calcResult.value;
         calcData.diametrOne = data[0].options[data[0].options.selectedIndex].text;
         calcData.valueOne = data[1].options[data[1].options.selectedIndex].text;
         calcData.diametrTwo = data[2].options[data[2].options.selectedIndex].text;
         calcData.valueTwo = data[3].options[data[3].options.selectedIndex].text;
     };
 
-    // проверяем количество камер септика
     calcChanged();
 
-    // проверяем количество камер септика после изменения
     accordion.addEventListener('change', () => {
         calcChanged();
     });
