@@ -25,8 +25,12 @@ const sendForm = () => {
 
         for (const key of form.elements) {
 
-            if (key.type === 'submit' && !key.classList.contains('popup-close')) {
+            if (key.type === 'submit') {
                 key.setAttribute('disabled', 'disabled');
+            }
+
+            if (key.className === 'popup-close') {
+                key.removeAttribute('disabled');
             }
 
             if (key.type === 'tel') {
@@ -34,7 +38,7 @@ const sendForm = () => {
                     if (regDigit.test(event.target.value)) {
                         event.target.style.border = '1px solid green';
                         for (const key of form.elements) {
-                            if (key.type === 'submit') {
+                            if (key.type === 'submit' && key.className !== 'popup-close') {
                                 key.removeAttribute('disabled');
                                 key.style.border = '1px solid transparent';
                             }
@@ -42,7 +46,7 @@ const sendForm = () => {
                     } else {
                         event.target.style.border = '1px solid red';
                         for (const key of form.elements) {
-                            if (key.type === 'submit') {
+                            if (key.type === 'submit' && key.className !== 'popup-close') {
                                 key.setAttribute('disabled', 'disabled');
                                 key.style.border = '1px solid red';
                             }
@@ -104,6 +108,14 @@ const sendForm = () => {
                     }
 
                     messageDiv.textContent = successMessage;
+
+                    const arr = [...form.elements];
+
+                    arr.forEach(item => {
+                        if (item.tagName === 'INPUT') {
+                            item.value = '';
+                        }
+                    });
 
                     setTimeout(() => {
                         messageDiv.remove();
